@@ -13,6 +13,11 @@ Compilateur : Mingw-w64 g++ 11.2.0
 #ifndef HEIGVD_PRG1_VECTEURMATRICE_CALCULMATRICIEL_H
 #define HEIGVD_PRG1_VECTEURMATRICE_CALCULMATRICIEL_H
 
+#include <iostream>
+#include <vector>
+using Vecteur = std::vector<int>;
+
+std::ostream& operator<<(std::ostream& os, const Vecteur& v);
 
 
 
