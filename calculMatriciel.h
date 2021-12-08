@@ -15,10 +15,81 @@ Compilateur : Mingw-w64 g++ 11.2.0
 
 #include <iostream>
 #include <vector>
-using Vecteur = std::vector<int>;
 
+//--------------------------------------------------------------
+//alias de types pour les vecteurs et les matrices
+using type    = int;
+using Vecteur = std::vector<type>;
+using Matrice = std::vector<Vecteur>;
+
+/**
+ *
+ * @param os
+ * @param v
+ * @return
+ */
 std::ostream& operator<<(std::ostream& os, const Vecteur& v);
 
+/**
+ *
+ * @param os
+ * @param m
+ * @return
+ */
+std::ostream& operator<<(std::ostream& os, const Matrice& m);
 
+/**
+ *
+ * @param m
+ * @return
+ */
+bool estReguliere(const Matrice& m);
+
+/**
+ *
+ * @param m
+ * @return
+ */
+int minCol(const Matrice& m);
+
+/**
+ *
+ * @param m
+ * @return
+ */
+bool estCarree(const Matrice& m);
+
+/**
+ *
+ * @param m
+ * @return
+ */
+std::vector<type> sommeLigne(const Matrice& m);
+
+/**
+ *
+ * @param m
+ * @return
+ */
+std::vector<type> sommeColonne(const Matrice& m);
+
+/**
+ *
+ * @param m
+ * @return
+ */
+std::vector<type> sommeSommeMin(const Matrice& m);
+
+/**
+ *
+ * @param m
+ */
+void shuffleMatrice(Matrice& m);
+
+/**
+ *
+ * @param m
+ */
+void sortMatrice(Matrice& m);
 
 #endif //HEIGVD_PRG1_VECTEURMATRICE_CALCULMATRICIEL_H
