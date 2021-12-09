@@ -51,7 +51,7 @@ bool estReguliere(const Matrice& m){
    if (!(m.empty()))
    {
       return ( min_element(m.begin(),m.end(), plusPetit)->size() ==
-               max_element(m.begin(),m.end(), plusGrand())->size());
+               max_element(m.begin(),m.end(), plusGrand)->size());
    }
    return true;
 }
@@ -66,6 +66,7 @@ size_t minCol(const Matrice& m){
    {
       return min_element(m.begin(),m.end(), plusPetit)->size();
    }
+   return 0;
 }
 
 bool plusPetit(const Vecteur& a,const Vecteur& b)
@@ -87,7 +88,7 @@ bool estCarree(const Matrice& m){
  * @param v
  * @return
  */
-int sommeElement(Vecteur v){
+int sommeElementLigne(Vecteur v){
    type sommeElement = accumulate(v.begin(), v.end(), 0);
 
    return sommeElement;
@@ -96,17 +97,31 @@ int sommeElement(Vecteur v){
 Vecteur sommeLigne(const Matrice& m){
    Vecteur somme(m.size());
 
-   transform(m.begin(), m.end(), somme.begin(), sommeElement);
+   transform(m.begin(), m.end(), somme.begin(), sommeElementLigne);
 
    return somme;
+}
+
+int sommeElementCol(Vecteur v){
+
+   type sommeElement = accumulate(v.begin(), v.begin() + 1 , 0);
+   //type sommeCol = copy(v.begin(), v.begin() + 1, somme.begin())
+
+   return sommeElement;
+
 }
 
 Vecteur sommeColonne(const Matrice& m){
    Vecteur somme;
    const size_t TAILLE = m.size();
 
+   transform(m.begin(), m.begin(), somme.begin(), sommeElementCol);
+
+
    return somme;
 }
+
+/*
 
 Vecteur sommeSommeMin(const Matrice& m){
 
@@ -119,3 +134,4 @@ void shuffleMatrice(Matrice& m){
 void sortMatrice(Matrice& m){
 
 }
+*/

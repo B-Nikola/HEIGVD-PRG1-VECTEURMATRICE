@@ -31,6 +31,7 @@ int main() {
     //Entrée user
    cout << sommeLigne(test)  << endl;
    cout << sommeLigne(test2) << endl;
+   cout << sommeColonne(test) << endl;
 
 
 
