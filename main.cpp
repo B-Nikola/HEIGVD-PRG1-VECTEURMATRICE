@@ -17,10 +17,22 @@ Compilateur : Mingw-w64 g++ 11.2.0
 
 using namespace std;
 int main() {
+
+    Matrice test = {{1, 2, 3, 6, 4, 2, 1},
+                    {4, 5, 6},
+                    {7, 8, 9}};
+   Matrice test2 = {{},
+                   {},
+                   {}};
+
     // Début de programme
-    cout << "Bienvenue";
+    cout << "Bienvenue" << endl;
 
     //Entrée user
+   cout << sommeLigne(test)  << endl;
+   cout << sommeLigne(test2) << endl;
+
+
 
 
 

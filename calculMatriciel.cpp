@@ -15,6 +15,8 @@ Compilateur : Mingw-w64 g++ 11.2.0
 -----------------------------------------------------------------------------------
 */
 
+#include <numeric>
+#include <algorithm>
 #include "calculMatriciel.h"
 
 using namespace std;
@@ -51,15 +53,33 @@ bool estCarree(const Matrice& m){
 
 }
 
-std::vector<type> sommeLigne(const Matrice& m){
+/**
+ *
+ * @param v
+ * @return
+ */
+int sommeElement(Vecteur v){
+   type sommeElement = accumulate(v.begin(), v.end(), 0);
 
+   return sommeElement;
 }
 
-std::vector<type> sommeColonne(const Matrice& m){
+Vecteur sommeLigne(const Matrice& m){
+   Vecteur somme(m.size());
 
+   transform(m.begin(), m.end(), somme.begin(), sommeElement);
+
+   return somme;
 }
 
-std::vector<type> sommeSommeMin(const Matrice& m){
+Vecteur sommeColonne(const Matrice& m){
+   Vecteur somme;
+   const size_t TAILLE = m.size();
+
+   return somme;
+}
+
+Vecteur sommeSommeMin(const Matrice& m){
 
 }
 
