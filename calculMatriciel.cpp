@@ -21,6 +21,11 @@ Compilateur : Mingw-w64 g++ 11.2.0
 
 using namespace std;
 
+
+
+bool plusPetit(const Vecteur& a,const Vecteur& b);
+bool plusGrand(const Vecteur& a,const Vecteur& b);
+
 ostream& operator<<(ostream& os, const Vecteur& v){
    os << "[";
    for (size_t i=0; i<v.size(); ++i) {
@@ -43,14 +48,38 @@ ostream& operator<<(ostream& os, const Matrice& m){
 }
 
 bool estReguliere(const Matrice& m){
-
+   if (!(m.empty()))
+   {
+      return ( min_element(m.begin(),m.end(), plusPetit)->size() ==
+               max_element(m.begin(),m.end(), plusGrand())->size());
+   }
+   return true;
 }
 
-int minCol(const Matrice& m){
-
+bool plusGrand(const Vecteur& a,const Vecteur& b)
+{
+   return (a.size()>b.size());
 }
+
+size_t minCol(const Matrice& m){
+   if (!(m.empty()))
+   {
+      return min_element(m.begin(),m.end(), plusPetit)->size();
+   }
+}
+
+bool plusPetit(const Vecteur& a,const Vecteur& b)
+{
+   return (a.size()<b.size());
+}
+
+
 bool estCarree(const Matrice& m){
-
+   if (estReguliere(m))
+   {
+      return (m.size() == m[0].size());
+   }
+   return true;
 }
 
 /**

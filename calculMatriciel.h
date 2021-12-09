@@ -50,7 +50,7 @@ bool estReguliere(const Matrice& m);
  * @param m
  * @return
  */
-int minCol(const Matrice& m);
+size_t minCol(const Matrice& m);
 
 /**
  *
