@@ -19,15 +19,16 @@ Compilateur : Mingw-w64 g++ 11.2.0
 #include <algorithm>
 #include <chrono>
 #include <random>
+#include <ctime>
 #include "calculMatriciel.h"
 
 using namespace std;
 
 
 
-bool plusPetit(const Vecteur& a,const Vecteur& b);
-bool plusGrand(const Vecteur& a,const Vecteur& b);
-
+bool taillePlusPetit(const Vecteur& a, const Vecteur& b);
+bool valPlusPetite(const Vecteur& a, const Vecteur& b);
+bool plusPetitVect(const Vecteur& a, const Vecteur& b);
 
 ostream& operator<<(ostream& os, const Vecteur& v){
    os << "[";
@@ -54,26 +55,22 @@ ostream& operator<<(ostream& os, const Matrice& m){
 bool estReguliere(const Matrice& m){
    if (!(m.empty()))
    {
-      return ( min_element(m.begin(),m.end(), plusPetit)->size() ==
-               max_element(m.begin(),m.end(), plusGrand)->size());
+      bool test = min_element(m.begin(), m.end(), taillePlusPetit)->size() ==
+                  max_element(m.begin(), m.end(), taillePlusPetit)->size();
+      return ( test );
    }
    return true;
-}
-
-bool plusGrand(const Vecteur& a,const Vecteur& b)
-{
-   return (a.size()>b.size());
 }
 
 size_t minCol(const Matrice& m){
    if (!(m.empty()))
    {
-      return min_element(m.begin(),m.end(), plusPetit)->size();
+      return min_element(m.begin(), m.end(), taillePlusPetit)->size();
    }
    return 0;
 }
 
-bool plusPetit(const Vecteur& a,const Vecteur& b)
+bool taillePlusPetit(const Vecteur& a, const Vecteur& b)
 {
    return (a.size()<b.size());
 }
@@ -84,7 +81,7 @@ bool estCarree(const Matrice& m){
    {
       return (m.size() == m[0].size());
    }
-   return true;
+   return false;
 }
 
 /**
@@ -94,15 +91,13 @@ bool estCarree(const Matrice& m){
  */
 int sommeElementLigne(Vecteur v){
    type sommeElement = accumulate(v.begin(), v.end(), 0);
-
    return sommeElement;
 }
 
 Vecteur sommeLigne(const Matrice& m){
+
    Vecteur somme(m.size());
-
    transform(m.begin(), m.end(), somme.begin(), sommeElementLigne);
-
    return somme;
 }
 
@@ -110,7 +105,6 @@ int sommeElementCol(Vecteur v){
 
    type sommeElement = accumulate(v.begin(), v.begin() + 1 , 0);
    //type sommeCol = copy(v.begin(), v.begin() + 1, somme.begin())
-
    return sommeElement;
 
 }
@@ -118,27 +112,29 @@ int sommeElementCol(Vecteur v){
 Vecteur sommeColonne(const Matrice& m){
    Vecteur somme;
    const size_t TAILLE = m.size();
-
    transform(m.begin(), m.begin(), somme.begin(), sommeElementCol);
-
-
    return somme;
 }
 
-/*
+Vecteur vectSommeMin(const Matrice& m){
 
-Vecteur sommeSommeMin(const Matrice& m){
+   return *min_element(m.begin(),m.end(), valPlusPetite);
+}
 
-}*/
+bool valPlusPetite(const Vecteur& a, const Vecteur& b){
+   return sommeElementLigne(a) < sommeElementLigne(b);
+}
 
-
-void shuffleMatrice(Matrice& m){
-   unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-   shuffle(m.begin(), m.end(), default_random_engine(seed));
+void sortMatrice(Matrice& m) {
+      sort(m.begin(), m.end(), plusPetitVect);
 
 }
-/*
-void sortMatrice(Matrice& m){
 
+bool plusPetitVect(const Vecteur& a, const Vecteur& b){
+
+   int test = *min_element(a.begin(),a.end());
+   int test2 = *min_element(b.begin(),b.end());
+
+   return (*min_element(a.begin(),a.end()) < *min_element(b.begin(),b.end()));
 }
-*/
+

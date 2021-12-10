@@ -22,18 +22,28 @@ int main() {
                     {4, 5, 6},
                     {7, 8, 9}};
    Matrice test2 = {{},
-                   {},
-                   {}};
+                    {},
+                    {}};
+   Matrice test3 = {{12,41,25},
+                    {45,7,47},
+                    {42,4,43}};
 
     // Début de programme
     cout << "Bienvenue" << endl;
 
     //Entrée user
+
    cout << sommeLigne(test)  << endl;
    cout << sommeLigne(test2) << endl;
    cout << sommeColonne(test) << endl;
-   shuffleMatrice(test);
-   cout << test;
+
+
+
+   cout << vectSommeMin(test)  << endl << endl;
+   cout << test3  << endl;
+   sortMatrice(test3);
+   cout << test3  << endl << endl;
+
 
 
 

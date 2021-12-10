@@ -78,7 +78,7 @@ std::vector<type> sommeColonne(const Matrice& m);
  * @param m
  * @return
  */
-std::vector<type> sommeSommeMin(const Matrice& m);
+std::vector<type> vectSommeMin(const Matrice& m);
 
 /**
  *
