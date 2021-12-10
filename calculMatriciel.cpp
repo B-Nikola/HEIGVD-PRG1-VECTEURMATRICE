@@ -17,6 +17,8 @@ Compilateur : Mingw-w64 g++ 11.2.0
 
 #include <numeric>
 #include <algorithm>
+#include <chrono>
+#include <random>
 #include "calculMatriciel.h"
 
 using namespace std;
@@ -26,8 +28,10 @@ using namespace std;
 bool plusPetit(const Vecteur& a,const Vecteur& b);
 bool plusGrand(const Vecteur& a,const Vecteur& b);
 
+
 ostream& operator<<(ostream& os, const Vecteur& v){
    os << "[";
+
    for (size_t i=0; i<v.size(); ++i) {
       if (i)
          os << ", ";
@@ -125,12 +129,15 @@ Vecteur sommeColonne(const Matrice& m){
 
 Vecteur sommeSommeMin(const Matrice& m){
 
-}
+}*/
+
 
 void shuffleMatrice(Matrice& m){
+   unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+   shuffle(m.begin(), m.end(), default_random_engine(seed));
 
 }
-
+/*
 void sortMatrice(Matrice& m){
 
 }
