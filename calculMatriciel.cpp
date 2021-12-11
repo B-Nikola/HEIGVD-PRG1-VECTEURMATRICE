@@ -37,9 +37,38 @@ Compilateur : Mingw-w64 g++ 11.2.0
 
 using namespace std;
 
+/**
+ *
+ * @param a un vecteur
+ * @param b un autre vecteur
+ * @return un booléen qui vaut true si la taille du premier vecteur est plus
+ *         petite que celle du deuxième.
+ */
 bool taillePlusPetit(const Vecteur& a, const Vecteur& b);
+
+/**
+ *
+ * @param a un vecteur
+ * @param b un autre vecteur
+ * @return retour un booléen qui vaut true si la somme des éléments du premier
+ *         vecteur est plus petite que la somme des éléments du deuxième vecteur.
+ */
 bool valPlusPetite(const Vecteur& a, const Vecteur& b);
+
+/**
+ *
+ * @param a un vecteur
+ * @param b un autre vecteur
+ * @return un booléen qui vaut true si le premier vecteur est plus petit que le
+ * deuxième.
+ */
 bool plusPetitVect(const Vecteur& a, const Vecteur& b);
+/**
+ *
+ * @param v un vecteur
+ * @return la somme des éléments du vecteur reçu en paramètre dans un int.
+ */
+int sommeElementLigne(Vecteur v);
 
 ostream& operator<<(ostream& os, const Vecteur& v){
    os << "[";
@@ -68,7 +97,7 @@ bool estReguliere(const Matrice& m){
    {
       bool test = min_element(m.begin(), m.end(), taillePlusPetit)->size() ==
                   max_element(m.begin(), m.end(), taillePlusPetit)->size();
-      return ( test );
+      return test;
    }
    return true;
 }
@@ -86,26 +115,17 @@ bool taillePlusPetit(const Vecteur& a, const Vecteur& b)
    return (a.size() < b.size());
 }
 
-
 bool estCarree(const Matrice& m){
-  // if (!(m.empty())){
-      if (estReguliere(m))
-      {
-         return (m.size() == m[0].size());
-      }
-  // }
-  // else if(m.empty()){
-  //    return true;
-  // }
-  // else
-   return false;
+   if(m.empty()) {
+      return true;
+   }
+   if (estReguliere(m)){
+      return (m.size() == m[0].size());
+   }
+
+      return false;
 }
 
-/**
- *
- * @param v un vecteur
- * @return la somme des éléments du vecteur reçu en paramètre dans un int.
- */
 int sommeElementLigne(Vecteur v){
    type sommeElement = accumulate(v.begin(), v.end(), 0);
    return sommeElement;
@@ -118,21 +138,29 @@ Vecteur sommeLigne(const Matrice& m){
    return somme;
 }
 
-int sommeElementCol(Vecteur v){
+Vecteur sommeElementCol(Vecteur v){
 
-   type sommeElement = accumulate(v.begin(), v.begin() + 1 , 0);
-   //type sommeCol = copy(v.begin(), v.begin() + 1, somme.begin())
+   //for (size_t i = 0; i < v.end(); ++i) {
+
+   //for (int i = 0; i < m.size; ++i) {
+//
+   //}
+   Vecteur sommeElement;//accumulate(v.begin(), v.begin() + 1 , 0);
+   //type somme = 0;
+   //somme += *v.begin();
+   //}
+
+   copy(v.begin(), v.begin() + 1, sommeElement.begin());
    return sommeElement;
-
 }
 
 Vecteur sommeColonne(const Matrice& m){
-   Vecteur somme;
-   for (size_t i = 0; i < m.size(); ++i){
-      transform(m.begin(), m.end(), somme.begin(), sommeElementCol);
-   }
+   Vecteur transpose;
+   for (size_t i = 0; i < m.size() ; ++i) {
 
-   return somme;
+      transform(m.begin(), m.end(), transpose.begin(), sommeElementCol);
+   }
+   return transpose;
 }
 
 Vecteur vectSommeMin(const Matrice& m){
@@ -140,40 +168,23 @@ Vecteur vectSommeMin(const Matrice& m){
    return *min_element(m.begin(),m.end(), valPlusPetite);
 }
 
-/**
- *
- * @param a un vecteur
- * @param b un autre vecteur
- * @return retour un booléen qui vaut true si la somme des éléments du premier
- *         vecteur est plus petite que la somme des éléments du deuxième vecteur.
- */
-
 bool valPlusPetite(const Vecteur& a, const Vecteur& b){
    return sommeElementLigne(a) < sommeElementLigne(b);
 }
 
 void sortMatrice(Matrice& m) {
    sort(m.begin(), m.end(), plusPetitVect);
-
 }
 
 void shuffleMatrice(Matrice& m){
-   unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+   long long seed = chrono::system_clock::now().time_since_epoch().count();
    shuffle(m.begin(), m.end(), default_random_engine(seed));
 }
 
-/**
- *
- * @param a un vecteur
- * @param b un autre vecteur
- * @return un booléen qui vaut true si le premier vecteur est plus petit que le
- * deuxième.
- */
 bool plusPetitVect(const Vecteur& a, const Vecteur& b){
 
-   int test  = *min_element(a.begin(),a.end());
-   int test2 = *min_element(b.begin(),b.end());
+   //int test  = *min_element(a.begin(),a.end());
+   //int test2 = *min_element(b.begin(),b.end());
 
    return (*min_element(a.begin(),a.end()) < *min_element(b.begin(),b.end()));
 }
-

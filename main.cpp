@@ -27,57 +27,78 @@ int main() {
    Matrice test3 = {{12,41,25},
                     {45,7,47},
                     {42,4,43}};
+   Matrice test4 = {{1, 1, 2},
+                    {1, 1, 3},
+                    {1, 2, 3}};
+   Matrice test5 = {};
 
-   // Début de programme
+      // Début de programme
    cout << "Bienvenue" << endl;
 
    //Entrée user
+
+   cout << test3.begin()[0][0] << endl;
 
    //Test estCaree
    cout << "-----------estcarree----------------" << endl;
    cout << "matrice test1 : " << estCarree(test1) << endl;
    cout << "matrice test2 : " << estCarree(test2) << endl;
    cout << "matrice test3 : " << estCarree(test3) << endl;
+   cout << "matrice test4 : " << estCarree(test4) << endl;
+   cout << "matrice test5 : " << estCarree(test5) << endl;
 
    //Test estReguliere
    cout << "-----------estReguliere----------------" << endl;
    cout << "matrice test1 : " << estReguliere(test1) << endl;
    cout << "matrice test2 : " << estReguliere(test2) << endl;
    cout << "matrice test3 : " << estReguliere(test3) << endl;
+   cout << "matrice test4 : " << estReguliere(test4) << endl;
+   cout << "matrice test5 : " << estReguliere(test5) << endl;
 
    //Test minCol
    cout << "-----------minCol----------------" << endl;
    cout << "matrice test1 : " << minCol(test1) << endl;
    cout << "matrice test2 : " << minCol(test2) << endl;
    cout << "matrice test3 : " << minCol(test3) << endl;
+   cout << "matrice test4 : " << minCol(test4) << endl;
+   cout << "matrice test5 : " << minCol(test5) << endl;
 
    //Test de sommeLigne
    cout << "-----------Somme Ligne----------------" << endl;
    cout << "matrice test1 : " << sommeLigne(test1) << endl;
    cout << "matrice test2 : " << sommeLigne(test2) << endl;
    cout << "matrice test3 : " << sommeLigne(test3) << endl;
-
+   cout << "matrice test4 : " << sommeLigne(test4) << endl;
+   cout << "matrice test5 : " << sommeLigne(test5) << endl;
+/*
    //Test de sommeColonne
    cout << "-----------Somme Colonne----------------" << endl;
    cout << "matrice test1 : " << sommeColonne(test1) << endl;
    cout << "matrice test2 : " << sommeColonne(test2) << endl;
    cout << "matrice test3 : " << sommeColonne(test3) << endl;
-
+*/
    //Test de vectSommeMin
-   cout << "-----------Somme min----------------" << endl;
+   cout << "----------- vectSomme min----------------" << endl;
    cout << "matrice test1 : " << vectSommeMin(test1) << endl;
    cout << "matrice test2 : " << vectSommeMin(test2) << endl;
    cout << "matrice test3 : " << vectSommeMin(test3) << endl;
+   cout << "matrice test4 : " << vectSommeMin(test4) << endl;
+
 
    //Test shuffle
    cout << "-----------Shuffle----------------" << endl;
    shuffleMatrice(test1);
    shuffleMatrice(test2);
    shuffleMatrice(test3);
+   shuffleMatrice(test4);
+   shuffleMatrice(test5);
    cout << "matrice test1 : " << test1  << endl;
    cout << "matrice test2 : " << test2  << endl;
    cout << "matrice test3 : " << test3  << endl;
+   cout << "matrice test4 : " << test4  << endl;
 
+
+   /*
    //Test sort
    cout << "-----------Sort----------------" << endl;
    sortMatrice(test1);
@@ -86,7 +107,7 @@ int main() {
    cout << "matrice test1 : " << test1  << endl;
    cout << "matrice test2 : " << test2  << endl;
    cout << "matrice test3 : " << test3  << endl;
-
+*/
 
    // fin de programme
    cout << "Presser ENTER pour quitter";
