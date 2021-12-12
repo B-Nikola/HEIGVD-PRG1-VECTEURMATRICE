@@ -158,9 +158,14 @@ Vecteur sommeColonne(const Matrice& m){
 
 }
 
-Vecteur vectSommeMin(const Matrice& m){
+Vecteur vectSommeMin(const Matrice& m) {
+   Vecteur temporaire;
 
-   return *min_element(m.begin(),m.end(), valPlusPetite);
+   if (!(m.empty())) {
+      temporaire = *min_element(m.begin(), m.end(), valPlusPetite);
+   }
+
+   return temporaire;
 }
 
 bool valPlusPetite(const Vecteur& a, const Vecteur& b){
