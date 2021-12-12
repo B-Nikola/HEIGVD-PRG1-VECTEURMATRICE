@@ -140,42 +140,18 @@ Vecteur sommeLigne(const Matrice& m){
    return somme;
 }
 
-Vecteur sommeElementCol(Vecteur v){
-
-   //for (size_t i = 0; i < v.end(); ++i) {
-
-   //for (int i = 0; i < m.size; ++i) {
-//
-   //}
-   Vecteur sommeElement;//accumulate(v.begin(), v.begin() + 1 , 0);
-   //type somme = 0;
-   //somme += *v.begin();
-   //}
-
-   copy(v.begin(), v.begin() + 1, sommeElement.begin());
-   return sommeElement;
-}
-
 Vecteur sommeColonne(const Matrice& m){
 
    Vecteur transpose;
-   if (estCarree(m)) {
-      for (size_t i = 0; i < m[0].size(); ++i) {
-         type total = 0;
-         for (size_t j = 0; j < m.size(); ++j) {
-             total += m.at(i).at(j);
+   for (size_t i = 0; i < max_element(m.begin(), m.end(), taillePlusPetit)->size(); ++i) {
+      type total = 0;
+      for (size_t j = 0; j < m.size(); ++j) {
+         if (i<m.at(j).size())
+            total += m.at(j).at(i);
          }
-         transpose.push_back(total);
-      }
-      return transpose;
+      transpose.push_back(total);
    }
    return transpose;
-
-   /*
-    for (size_t i = 0; i < m.size() ; ++i) {
-      transform(m.begin(), m.end(), transpose.begin(), sommeElementCol);
-   }
-   */
 
 }
 
