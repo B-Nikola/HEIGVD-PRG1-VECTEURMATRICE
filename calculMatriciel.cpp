@@ -23,6 +23,7 @@ Description : Libraire de fonctions permettant d'effectuer des opérations sur d
                manière aléatoire. La seed aléatoire est basée sur l'heure.
               -trier dans l'ordre croissant les vecteur d'une matrice en fonction
                de l'élément le plus petit d'un vecteur.
+
 Remarque(s) : <TODO>
 Compilateur : Mingw-w64 g++ 11.2.0
 -----------------------------------------------------------------------------------
@@ -38,7 +39,7 @@ Compilateur : Mingw-w64 g++ 11.2.0
 using namespace std;
 
 /**
- *
+ * Permet de comparer les vecteur est trouvée le plus petit
  * @param a un vecteur
  * @param b un autre vecteur
  * @return un booléen qui vaut true si la taille du premier vecteur est plus
@@ -47,7 +48,7 @@ using namespace std;
 bool taillePlusPetit(const Vecteur& a, const Vecteur& b);
 
 /**
- *
+ * Permet de comparer les vecteur est trouvée le quel a la somme la plus petite
  * @param a un vecteur
  * @param b un autre vecteur
  * @return retour un booléen qui vaut true si la somme des éléments du premier
@@ -56,15 +57,16 @@ bool taillePlusPetit(const Vecteur& a, const Vecteur& b);
 bool valPlusPetite(const Vecteur& a, const Vecteur& b);
 
 /**
- *
+ * Permet de comparer les vecteur est trouvée le plus petit
  * @param a un vecteur
  * @param b un autre vecteur
  * @return un booléen qui vaut true si le premier vecteur est plus petit que le
  * deuxième.
  */
 bool plusPetitVect(const Vecteur& a, const Vecteur& b);
+
 /**
- *
+ * Retourne la somme d'un vecteur
  * @param v un vecteur
  * @return la somme des éléments du vecteur reçu en paramètre dans un int.
  */
@@ -155,12 +157,26 @@ Vecteur sommeElementCol(Vecteur v){
 }
 
 Vecteur sommeColonne(const Matrice& m){
-   Vecteur transpose;
-   for (size_t i = 0; i < m.size() ; ++i) {
 
-      transform(m.begin(), m.end(), transpose.begin(), sommeElementCol);
+   Vecteur transpose;
+   if (estCarree(m)) {
+      for (size_t i = 0; i < m[0].size(); ++i) {
+         type total = 0;
+         for (size_t j = 0; j < m.size(); ++j) {
+             total += m.at(i).at(j);
+         }
+         transpose.push_back(total);
+      }
+      return transpose;
    }
    return transpose;
+
+   /*
+    for (size_t i = 0; i < m.size() ; ++i) {
+      transform(m.begin(), m.end(), transpose.begin(), sommeElementCol);
+   }
+   */
+
 }
 
 Vecteur vectSommeMin(const Matrice& m){
@@ -173,7 +189,9 @@ bool valPlusPetite(const Vecteur& a, const Vecteur& b){
 }
 
 void sortMatrice(Matrice& m) {
-   sort(m.begin(), m.end(), plusPetitVect);
+   if (!(m.empty())) {
+      sort(m.begin(), m.end(), plusPetitVect);
+   }
 }
 
 void shuffleMatrice(Matrice& m){
@@ -183,8 +201,10 @@ void shuffleMatrice(Matrice& m){
 
 bool plusPetitVect(const Vecteur& a, const Vecteur& b){
 
-   //int test  = *min_element(a.begin(),a.end());
-   //int test2 = *min_element(b.begin(),b.end());
-
-   return (*min_element(a.begin(),a.end()) < *min_element(b.begin(),b.end()));
+   if (a.empty()) {
+      return true;
+   }else
+   {
+      return (*min_element(a.begin(),a.end()) < *min_element(b.begin(),b.end()));
+   }
 }

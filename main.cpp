@@ -24,11 +24,11 @@ int main() {
    Matrice test2 = {{},
                     {},
                     {}};
-   Matrice test3 = {{12,41,25},
-                    {45,7,47},
+   Matrice test3 = {{41,12,25},
+                    {45,7,47,1},
                     {42,4,43}};
    Matrice test4 = {{1, 1, 2},
-                    {1, 1, 3},
+                    {8,12,16},
                     {1, 2, 3}};
    Matrice test5 = {};
 
@@ -70,13 +70,15 @@ int main() {
    cout << "matrice test3 : " << sommeLigne(test3) << endl;
    cout << "matrice test4 : " << sommeLigne(test4) << endl;
    cout << "matrice test5 : " << sommeLigne(test5) << endl;
-/*
+
    //Test de sommeColonne
    cout << "-----------Somme Colonne----------------" << endl;
    cout << "matrice test1 : " << sommeColonne(test1) << endl;
    cout << "matrice test2 : " << sommeColonne(test2) << endl;
    cout << "matrice test3 : " << sommeColonne(test3) << endl;
-*/
+   cout << "matrice test4 : " << sommeColonne(test4) << endl;
+
+
    //Test de vectSommeMin
    cout << "----------- vectSomme min----------------" << endl;
    cout << "matrice test1 : " << vectSommeMin(test1) << endl;
@@ -98,16 +100,17 @@ int main() {
    cout << "matrice test4 : " << test4  << endl;
 
 
-   /*
    //Test sort
    cout << "-----------Sort----------------" << endl;
    sortMatrice(test1);
    sortMatrice(test2);
    sortMatrice(test3);
+   sortMatrice(test4);
    cout << "matrice test1 : " << test1  << endl;
    cout << "matrice test2 : " << test2  << endl;
    cout << "matrice test3 : " << test3  << endl;
-*/
+   cout << "matrice test4 : " << test4  << endl;
+
 
    // fin de programme
    cout << "Presser ENTER pour quitter";
