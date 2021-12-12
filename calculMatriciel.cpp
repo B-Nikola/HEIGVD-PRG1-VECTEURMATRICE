@@ -143,13 +143,16 @@ Vecteur sommeLigne(const Matrice& m){
 Vecteur sommeColonne(const Matrice& m){
 
    Vecteur transpose;
-   for (size_t i = 0; i < max_element(m.begin(), m.end(), taillePlusPetit)->size(); ++i) {
-      type total = 0;
-      for (size_t j = 0; j < m.size(); ++j) {
-         if (i<m.at(j).size())
-            total += m.at(j).at(i);
+   if(!(m.empty())) {
+      for (size_t i = 0;
+           i < max_element(m.begin(), m.end(), taillePlusPetit)->size(); ++i) {
+         type total = 0;
+         for (size_t j = 0; j < m.size(); ++j) {
+            if (i < m.at(j).size())
+               total += m.at(j).at(i);
          }
-      transpose.push_back(total);
+         transpose.push_back(total);
+      }
    }
    return transpose;
 
